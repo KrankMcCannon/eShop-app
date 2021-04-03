@@ -1,53 +1,24 @@
 import React, { Component } from "react";
+import TableHeader from "../Common/TableHeader";
 
 class Table extends Component {
-  raiseSort = (path) => {
-    const sortColumn = { ...this.props.sortColumn };
-    if (sortColumn.path === path)
-      sortColumn.order = sortColumn.order === "asc" ? "desc" : "asc";
-    else {
-      sortColumn.path = path;
-      sortColumn.order = "asc";
-    }
-    this.props.onSort(sortColumn);
-  };
+  columns = [
+    { path: "name", label: "Name" },
+    { path: "category.name", label: "Category" },
+    { path: "rate", label: "Rate" },
+    { path: "price", label: "Price" },
+  ];
+
   render() {
-    const { carSorted } = this.props;
+    const { carSorted, sortColumn, onSort } = this.props;
 
     return (
       <table className="table table-hover">
-        <thead>
-          <tr>
-            <th
-              onClick={() => this.raiseSort("name")}
-              scope="col"
-              className="clickable"
-            >
-              Name
-            </th>
-            <th
-              onClick={() => this.raiseSort("category.name")}
-              scope="col"
-              className="clickable"
-            >
-              Category
-            </th>
-            <th
-              onClick={() => this.raiseSort("rate")}
-              scope="col"
-              className="clickable"
-            >
-              Rate
-            </th>
-            <th
-              onClick={() => this.raiseSort("price")}
-              scope="col"
-              className="clickable"
-            >
-              Price
-            </th>
-          </tr>
-        </thead>
+        <TableHeader
+          columns={this.columns}
+          sortColumn={sortColumn}
+          onSort={onSort}
+        />
         <tbody>
           {carSorted.map((car) => (
             <tr key={car.id}>
