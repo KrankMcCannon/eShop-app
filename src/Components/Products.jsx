@@ -28,6 +28,24 @@ class Products extends Component {
     this.setState({ cars: getAllProducts(), categories });
   }
 
+  handleIncrement = (car) => {
+    const cars = [...this.state.cars];
+    const index = cars.indexOf(car);
+    cars[index] = { ...car };
+    cars[index].value++;
+    this.setState({ car: cars });
+  };
+
+  handleDecrement = (car) => {
+    const cars = [...this.state.cars];
+    const index = cars.indexOf(car);
+    cars[index] = { ...car };
+    if (cars[index].value > 0) {
+      cars[index].value--;
+    }
+    this.setState({ car: cars });
+  };
+
   handlePageChange = (page) => {
     this.setState({ currentPage: page });
   };
@@ -91,6 +109,8 @@ class Products extends Component {
             <ProductsTable
               carSorted={carSorted}
               sortColumn={sortColumn}
+              onIncrement={this.handleIncrement}
+              onDecrement={this.handleDecrement}
               onSort={this.handleSort}
             />
             <Pagination

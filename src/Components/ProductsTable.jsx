@@ -7,8 +7,28 @@ class ProductsTable extends Component {
     { path: "category.name", label: "Category" },
     { path: "rate", label: "Rate" },
     { path: "price", label: "Price" },
-    // { key: "increment", content: "<Increment />" },
-    // { key: "decrement", content: "<Decrement />" },
+    {
+      key: "increment",
+      content: (car) => (
+        <button
+          onClick={() => this.props.onIncrement(car)}
+          className="btn btn-secondary btn-sm"
+        >
+          +
+        </button>
+      ),
+    },
+    {
+      key: "decrement",
+      content: (car) => (
+        <button
+          onClick={() => this.props.onDecrement(car)}
+          className="btn btn-secondary btn-sm"
+        >
+          -
+        </button>
+      ),
+    },
   ];
 
   render() {
