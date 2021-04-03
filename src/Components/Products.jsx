@@ -3,7 +3,7 @@ import "../../node_modules/bootstrap/dist/css/bootstrap.css";
 import "../../node_modules/font-awesome/css/font-awesome.css";
 import ListGroup from "../Common/Listgroup";
 import Pagination from "../Common/Pagination";
-import Table from "./Table";
+import ProductsTable from "./ProductsTable";
 import { getAllProducts, getAllCategories } from "../Database/db.js";
 import { paginate } from "../utils/paginate";
 import _ from "lodash";
@@ -38,10 +38,9 @@ class Products extends Component {
     this.setState({ sortColumn });
   };
 
-  render() {
+  getPageData = () => {
     const {
       cars,
-      categories,
       selectedCategory,
       pageSize,
       currentPage,
@@ -57,6 +56,20 @@ class Products extends Component {
 
     const carSorted = paginate(sorted, currentPage, pageSize);
 
+    return { totalCount: filtered.length, data: carSorted };
+  };
+
+  render() {
+    const {
+      categories,
+      selectedCategory,
+      pageSize,
+      currentPage,
+      sortColumn,
+    } = this.state;
+
+    const { totalCount, data: carSorted } = this.getPageData();
+
     return (
       <div className="row">
         <div className="col-3">
@@ -67,14 +80,14 @@ class Products extends Component {
           />
         </div>
         <div className="col">
-          <h2>Hai scelto di vedere {filtered.length} prodotti</h2>
-          <Table
+          <h2>Hai scelto di vedere {totalCount} prodotti</h2>
+          <ProductsTable
             carSorted={carSorted}
             sortColumn={sortColumn}
             onSort={this.handleSort}
           />
           <Pagination
-            itemsCount={filtered.length}
+            itemsCount={totalCount}
             pageSize={pageSize}
             currentPage={currentPage}
             onPageChange={this.handlePageChange}
