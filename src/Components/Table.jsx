@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import TableHeader from "../Common/TableHeader";
+import TableBody from "../Common/TableBody";
 
 class Table extends Component {
   columns = [
@@ -19,16 +20,7 @@ class Table extends Component {
           sortColumn={sortColumn}
           onSort={onSort}
         />
-        <tbody>
-          {carSorted.map((car) => (
-            <tr key={car.id}>
-              <td>{car.name}</td>
-              <td>{car.category.name}</td>
-              <td>{car.rate}</td>
-              <td>{car.price}</td>
-            </tr>
-          ))}
-        </tbody>
+        <TableBody columns={this.columns} data={carSorted} />
       </table>
     );
   }
