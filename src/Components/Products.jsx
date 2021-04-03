@@ -34,14 +34,7 @@ class Products extends Component {
     this.setState({ selectedCategory: category, currentPage: 1 });
   };
 
-  handleSort = (path) => {
-    const sortColumn = { ...this.state.sortColumn };
-    if (sortColumn.path === path)
-      sortColumn.order = sortColumn.order === "asc" ? "desc" : "asc";
-    else {
-      sortColumn.path = path;
-      sortColumn.order = "asc";
-    }
+  handleSort = (sortColumn) => {
     this.setState({ sortColumn });
   };
 
@@ -75,7 +68,11 @@ class Products extends Component {
         </div>
         <div className="col">
           <h2>Hai scelto di vedere {filtered.length} prodotti</h2>
-          <Table carSorted={carSorted} onSort={this.handleSort} />
+          <Table
+            carSorted={carSorted}
+            sortColumn={sortColumn}
+            onSort={this.handleSort}
+          />
           <Pagination
             itemsCount={filtered.length}
             pageSize={pageSize}
