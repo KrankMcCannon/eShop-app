@@ -29,8 +29,7 @@ class Products extends Component {
   };
 
   handleCategorySelect = (category) => {
-    // console.log(category);
-    this.setState({ selectedCategory: category });
+    this.setState({ selectedCategory: category, currentPage: 1 });
   };
 
   render() {
@@ -42,9 +41,10 @@ class Products extends Component {
       currentPage,
     } = this.state;
 
-    const filtered = selectedCategory
-      ? cars.filter((c) => c.category.id === selectedCategory.id)
-      : cars;
+    const filtered =
+      selectedCategory && selectedCategory.id
+        ? cars.filter((c) => c.category.id === selectedCategory.id)
+        : cars;
 
     const carSorted = paginate(filtered, currentPage, pageSize);
 
@@ -58,7 +58,7 @@ class Products extends Component {
           />
         </div>
         <div className="col">
-          <h2>Hai scelto di vedere {cars.length} prodotti</h2>
+          <h2>Hai scelto di vedere {filtered.length} prodotti</h2>
           <table className="table table-hover">
             <thead>
               <tr>
