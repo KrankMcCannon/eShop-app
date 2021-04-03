@@ -3,6 +3,7 @@ import "../../node_modules/bootstrap/dist/css/bootstrap.css";
 import "../../node_modules/font-awesome/css/font-awesome.css";
 import ListGroup from "../Common/Listgroup";
 import Pagination from "../Common/Pagination";
+import Table from "./Table";
 import { getAllProducts, getAllCategories } from "../Database/db.js";
 import { paginate } from "../utils/paginate";
 
@@ -59,36 +60,7 @@ class Products extends Component {
         </div>
         <div className="col">
           <h2>Hai scelto di vedere {filtered.length} prodotti</h2>
-          <table className="table table-hover">
-            <thead>
-              <tr>
-                <th scope="col">#</th>
-                <th scope="col" className="clickable">
-                  Name
-                </th>
-                <th scope="col" className="clickable">
-                  Category
-                </th>
-                <th scope="col" className="clickable">
-                  Rate
-                </th>
-                <th scope="col" className="clickable">
-                  Price
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              {carSorted.map((car) => (
-                <tr key={car.id}>
-                  <th scope="row">{car.id}</th>
-                  <td>{car.name}</td>
-                  <td>{car.category.name}</td>
-                  <td>{car.rate}</td>
-                  <td>{car.price}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+          <Table carSorted={carSorted} />
           <Pagination
             itemsCount={filtered.length}
             pageSize={pageSize}
