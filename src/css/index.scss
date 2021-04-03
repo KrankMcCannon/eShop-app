@@ -57,6 +57,12 @@ td {
   text-align: center;
 }
 
+.list-group-item.active {
+  color: white;
+  background-color: rgb(0 26 73 / 90%) !important;
+  border-color: rgb(0 26 73 / 90%) !important;
+}
+
 .pagination > .active > a {
   color: white;
   background-color: rgb(0 26 73 / 90%) !important;

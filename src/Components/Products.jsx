@@ -5,6 +5,7 @@ import "../../node_modules/font-awesome/css/font-awesome.css";
 import ListGroup from "./Common/Listgroup";
 import Pagination from "./Common/Pagination";
 import ProductsTable from "./ProductsTable";
+import ShoppingCart from "./ShoppingCart/ShoppingCart";
 import { getAllProducts, getAllCategories } from "../Database/db.js";
 import { paginate } from "../utils/paginate";
 import _ from "lodash";
@@ -100,6 +101,7 @@ class Products extends Component {
             />
           </div>
         </div>
+        <ShoppingCart />
       </React.Fragment>
     );
   }

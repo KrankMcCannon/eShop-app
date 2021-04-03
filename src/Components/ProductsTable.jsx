@@ -7,6 +7,8 @@ class ProductsTable extends Component {
     { path: "category.name", label: "Category" },
     { path: "rate", label: "Rate" },
     { path: "price", label: "Price" },
+    // { key: "increment", content: "<Increment />" },
+    // { key: "decrement", content: "<Decrement />" },
   ];
 
   render() {
