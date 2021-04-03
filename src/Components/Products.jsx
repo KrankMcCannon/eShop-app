@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import "../../node_modules/bootstrap/dist/css/bootstrap.css";
 import "../../node_modules/font-awesome/css/font-awesome.css";
-import ListGroup from "../Common/Listgroup";
-import Pagination from "../Common/Pagination";
+import ListGroup from "./Common/Listgroup";
+import Pagination from "./Common/Pagination";
 import ProductsTable from "./ProductsTable";
 import { getAllProducts, getAllCategories } from "../Database/db.js";
 import { paginate } from "../utils/paginate";

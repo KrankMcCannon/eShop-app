@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Table from "../Common/Table";
+import Table from "./Common/Table";
 
 class ProductsTable extends Component {
   columns = [
