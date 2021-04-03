@@ -6,6 +6,7 @@ import Pagination from "../Common/Pagination";
 import Table from "./Table";
 import { getAllProducts, getAllCategories } from "../Database/db.js";
 import { paginate } from "../utils/paginate";
+import _ from "lodash";
 
 class Products extends Component {
   state = {
@@ -33,6 +34,17 @@ class Products extends Component {
     this.setState({ selectedCategory: category, currentPage: 1 });
   };
 
+  handleSort = (path) => {
+    const sortColumn = { ...this.state.sortColumn };
+    if (sortColumn.path === path)
+      sortColumn.order = sortColumn.order === "asc" ? "desc" : "asc";
+    else {
+      sortColumn.path = path;
+      sortColumn.order = "asc";
+    }
+    this.setState({ sortColumn });
+  };
+
   render() {
     const {
       cars,
@@ -40,6 +52,7 @@ class Products extends Component {
       selectedCategory,
       pageSize,
       currentPage,
+      sortColumn,
     } = this.state;
 
     const filtered =
@@ -47,7 +60,9 @@ class Products extends Component {
         ? cars.filter((c) => c.category.id === selectedCategory.id)
         : cars;
 
-    const carSorted = paginate(filtered, currentPage, pageSize);
+    const sorted = _.orderBy(filtered, [sortColumn.path], [sortColumn.order]);
+
+    const carSorted = paginate(sorted, currentPage, pageSize);
 
     return (
       <div className="row">
@@ -60,7 +75,7 @@ class Products extends Component {
         </div>
         <div className="col">
           <h2>Hai scelto di vedere {filtered.length} prodotti</h2>
-          <Table carSorted={carSorted} />
+          <Table carSorted={carSorted} onSort={this.handleSort} />
           <Pagination
             itemsCount={filtered.length}
             pageSize={pageSize}
