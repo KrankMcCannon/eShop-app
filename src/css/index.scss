@@ -1,0 +1,64 @@
+@font-face {
+  font-family: fontFreeLight;
+  src: url("../utils/FiraSansCondensed-Light.ttf");
+}
+
+@font-face {
+  font-family: fontFreeRegular;
+  src: url("../utils/FiraSansCondensed-Regular.ttf");
+}
+
+@font-face {
+  font-family: fontFreeBold;
+  src: url("../utils/FiraSansCondensed-Bold.ttf");
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: fontFreeRegular;
+  background-color: rgb(243 243 243);
+}
+
+.logo {
+  display: flex;
+  height: 60px;
+}
+
+svg {
+  height: 63px;
+  width: 270px;
+}
+
+h2 {
+  font-family: fontFreeBold;
+  height: 55px;
+  width: -webkit-fill-available;
+  padding-top: 9px;
+  text-align: center;
+  background-color: #131921;
+  color: #ffffff;
+}
+
+td {
+  font-family: fontFreeLight;
+}
+
+.table {
+  border-bottom: 1px solid #dee2e6;
+}
+
+.clickable {
+  cursor: pointer;
+}
+
+.list-group {
+  font-family: fontFreeBold;
+  text-align: center;
+}
+
+.pagination > .active > a {
+  color: white;
+  background-color: rgb(0 26 73 / 90%) !important;
+  border-color: rgb(0 26 73 / 90%) !important;
+}

@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { ReactComponent as Logo } from "../svg/logo-12.svg";
 import "../../node_modules/bootstrap/dist/css/bootstrap.css";
 import "../../node_modules/font-awesome/css/font-awesome.css";
 import ListGroup from "./Common/Listgroup";
@@ -71,29 +72,35 @@ class Products extends Component {
     const { totalCount, data: carSorted } = this.getPageData();
 
     return (
-      <div className="row">
-        <div className="col-3">
-          <ListGroup
-            itemsCategory={categories}
-            selectedItem={selectedCategory}
-            onItemSelect={this.handleCategorySelect}
-          />
+      <React.Fragment>
+        <div className="logo">
+          <Logo />
+          <h2>eShop - eCommerce - eFake</h2>
+          {/* {totalCount} */}
         </div>
-        <div className="col">
-          <h2>Hai scelto di vedere {totalCount} prodotti</h2>
-          <ProductsTable
-            carSorted={carSorted}
-            sortColumn={sortColumn}
-            onSort={this.handleSort}
-          />
-          <Pagination
-            itemsCount={totalCount}
-            pageSize={pageSize}
-            currentPage={currentPage}
-            onPageChange={this.handlePageChange}
-          />
+        <div className="row">
+          <div className="col-3">
+            <ListGroup
+              itemsCategory={categories}
+              selectedItem={selectedCategory}
+              onItemSelect={this.handleCategorySelect}
+            />
+          </div>
+          <div className="col">
+            <ProductsTable
+              carSorted={carSorted}
+              sortColumn={sortColumn}
+              onSort={this.handleSort}
+            />
+            <Pagination
+              itemsCount={totalCount}
+              pageSize={pageSize}
+              currentPage={currentPage}
+              onPageChange={this.handlePageChange}
+            />
+          </div>
         </div>
-      </div>
+      </React.Fragment>
     );
   }
 }

@@ -2,7 +2,7 @@ const allProducts = [
   {
     id: 1,
     name: "Nulla",
-    price: 207,
+    price: "€ 207",
     category: { id: "1", name: "Food" },
     rate: 2.44,
     content: "Culpa sed tenetur incidunt quia veniam sed molliti",
@@ -11,7 +11,7 @@ const allProducts = [
   {
     id: 2,
     name: "Corporis",
-    price: 271,
+    price: "€ 271",
     category: { id: "1", name: "Food" },
     rate: 2.18,
     content: "Nam incidunt blanditiis odio inventore. Nobis volu",
@@ -20,7 +20,7 @@ const allProducts = [
   {
     id: 3,
     name: "Minus",
-    price: 295,
+    price: "€ 295",
     category: { id: "1", name: "Food" },
     rate: 0.91,
     content: "Quod reiciendis aspernatur ipsum cum debitis. Quis",
@@ -29,7 +29,7 @@ const allProducts = [
   {
     id: 4,
     name: "Qui",
-    price: 280,
+    price: "€ 280",
     category: { id: "1", name: "Food" },
     rate: 3.11,
     content: "Occaecati dolore assumenda facilis error quaerat. ",
@@ -38,7 +38,7 @@ const allProducts = [
   {
     id: 5,
     name: "Similique",
-    price: 262,
+    price: "€ 262",
     category: { id: 2, name: "Food" },
     rate: 0.29,
     content: "Autem blanditiis similique saepe excepturi at erro",
@@ -47,7 +47,7 @@ const allProducts = [
   {
     id: 6,
     name: "Soluta",
-    price: 109,
+    price: "€ 109",
     category: { id: "1", name: "Food" },
     rate: 0.28,
     content: "Quos accusamus distinctio voluptates ducimus neque",
@@ -56,7 +56,7 @@ const allProducts = [
   {
     id: 7,
     name: "Quos",
-    price: 247,
+    price: "€ 247",
     category: { id: "1", name: "Food" },
     rate: 4.74,
     content: "Error voluptate recusandae reiciendis adipisci nec",
@@ -65,7 +65,7 @@ const allProducts = [
   {
     id: 8,
     name: "Sunt",
-    price: 297,
+    price: "€ 297",
     category: { id: "1", name: "Food" },
     rate: 4.38,
     content: "Tempora sed explicabo quae recusandae vitae debiti",
@@ -74,7 +74,7 @@ const allProducts = [
   {
     id: 9,
     name: "Nemo",
-    price: 143,
+    price: "€ 143",
     category: { id: "1", name: "Food" },
     rate: 1.06,
     content: "Id pariatur at modi esse distinctio error. Dolores",
@@ -83,7 +83,7 @@ const allProducts = [
   {
     id: 10,
     name: "Quo",
-    price: 150,
+    price: "€ 150",
     category: { id: "1", name: "Food" },
     rate: 3.07,
     content: "Explicabo distinctio labore eius. Culpa provident ",
@@ -92,7 +92,7 @@ const allProducts = [
   {
     id: 11,
     name: "Nobis",
-    price: 195,
+    price: "€ 195",
     category: { id: "1", name: "Food" },
     rate: 1.68,
     content: "Reprehenderit iste quos amet. Natus consequatur in",
@@ -101,7 +101,7 @@ const allProducts = [
   {
     id: 12,
     name: "Explicabo",
-    price: 253,
+    price: "€ 253",
     category: { id: "1", name: "Food" },
     rate: 0.7,
     content: "Nihil magni libero sapiente voluptate. Perspiciati",
@@ -110,7 +110,7 @@ const allProducts = [
   {
     id: 13,
     name: "Hic",
-    price: 178,
+    price: "€ 178",
     category: { id: "1", name: "Food" },
     rate: 4.83,
     content: "Ut assumenda soluta esse officia. Quos quaerat sus",
@@ -119,7 +119,7 @@ const allProducts = [
   {
     id: 14,
     name: "Occaecati",
-    price: 199,
+    price: "€ 199",
     category: { id: "1", name: "Food" },
     rate: 3.17,
     content: "Aut quam nisi libero distinctio. Temporibus rerum ",
@@ -128,7 +128,7 @@ const allProducts = [
   {
     id: 15,
     name: "Consequatur",
-    price: 152,
+    price: "€ 152",
     category: { id: "2", name: "Beverage" },
     rate: 1.74,
     content: "Iste repudiandae nostrum ea iste voluptate ducimus",
@@ -137,7 +137,7 @@ const allProducts = [
   {
     id: 16,
     name: "Assumenda",
-    price: 236,
+    price: "€ 236",
     category: { id: "2", name: "Beverage" },
     rate: 2.89,
     content: "Sint aperiam voluptatum laudantium laborum at debi",
@@ -146,7 +146,7 @@ const allProducts = [
   {
     id: 17,
     name: "Placeat",
-    price: 115,
+    price: "€ 115",
     category: { id: "2", name: "Beverage" },
     rate: 4.7,
     content: "Temporibus reiciendis inventore ratione asperiores",
@@ -155,7 +155,7 @@ const allProducts = [
   {
     id: 18,
     name: "Facilis",
-    price: 130,
+    price: "€ 130",
     category: { id: "2", name: "Beverage" },
     rate: 0.64,
     content: "In sequi cumque quisquam corrupti doloribus suscip",
@@ -164,7 +164,7 @@ const allProducts = [
   {
     id: 19,
     name: "Ratione",
-    price: 117,
+    price: "€ 117",
     category: { id: "2", name: "Beverage" },
     rate: 3.62,
     content: "Corrupti sint occaecati doloribus maiores. Exceptu",
@@ -173,7 +173,7 @@ const allProducts = [
   {
     id: 20,
     name: "Non",
-    price: 230,
+    price: "€ 230",
     category: { id: "2", name: "Beverage" },
     rate: 2.28,
     content: "Exercitationem debitis enim eum nemo necessitatibu",
@@ -182,7 +182,7 @@ const allProducts = [
   {
     id: 21,
     name: "Quaerat",
-    price: 274,
+    price: "€ 274",
     category: { id: "2", name: "Beverage" },
     rate: 1.97,
     content: "A similique facilis facilis. Excepturi repudiandae",
@@ -191,7 +191,7 @@ const allProducts = [
   {
     id: 22,
     name: "Fugiat",
-    price: 167,
+    price: "€ 167",
     category: { id: "2", name: "Beverage" },
     rate: 3.67,
     content: "Maiores eveniet dolores laudantium quae doloribus ",
@@ -200,7 +200,7 @@ const allProducts = [
   {
     id: 23,
     name: "Voluptas",
-    price: 278,
+    price: "€ 278",
     category: { id: "2", name: "Beverage" },
     rate: 1.86,
     content: "Quas a at officia quod in quod. Impedit deserunt t",
@@ -209,7 +209,7 @@ const allProducts = [
   {
     id: 24,
     name: "Repellendus",
-    price: 285,
+    price: "€ 285",
     category: { id: "3", name: "Snack" },
     rate: 4.46,
     content: "Alias maiores soluta ab earum asperiores praesenti",
@@ -218,7 +218,7 @@ const allProducts = [
   {
     id: 25,
     name: "Quibusdam",
-    price: 209,
+    price: "€ 209",
     category: { id: "4", name: "Cigarettes" },
     rate: 0.21,
     content: "Assumenda debitis voluptatem magnam temporibus mol",
