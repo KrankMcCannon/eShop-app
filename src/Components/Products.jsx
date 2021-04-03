@@ -42,11 +42,11 @@ class Products extends Component {
       currentPage,
     } = this.state;
 
-    const carSorted = paginate(cars, currentPage, pageSize);
+    const filtered = selectedCategory
+      ? cars.filter((c) => c.category.id === selectedCategory.id)
+      : cars;
 
-    // const filtered = selectedCategory
-    //   ? cars.filter((c) => c.id === selectedCategory.id)
-    //   : cars;
+    const carSorted = paginate(filtered, currentPage, pageSize);
 
     return (
       <div className="row">
@@ -82,7 +82,7 @@ class Products extends Component {
                 <tr key={car.id}>
                   <th scope="row">{car.id}</th>
                   <td>{car.name}</td>
-                  <td>{car.category}</td>
+                  <td>{car.category.name}</td>
                   <td>{car.rate}</td>
                   <td>{car.price}</td>
                 </tr>
@@ -90,7 +90,7 @@ class Products extends Component {
             </tbody>
           </table>
           <Pagination
-            itemsCount={cars.length}
+            itemsCount={filtered.length}
             pageSize={pageSize}
             currentPage={currentPage}
             onPageChange={this.handlePageChange}
