@@ -11,7 +11,7 @@ class ProductsTable extends Component {
       key: "buy",
       content: (car) => (
         <button
-          onClick={() => this.props.onBuy(car)}
+          onClick={() => this.props.onClick(car)}
           className="btn btn-success btn-sm"
         >
           <i className="fa fa-shopping-cart" aria-hidden="true"></i>

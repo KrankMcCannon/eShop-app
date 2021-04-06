@@ -9,14 +9,14 @@ class Counter extends Component {
           <p>{counter.name}</p>
         </td>
         <td>{counter.price}</td>
-        {/* <td>
+        <td>
           <span
             style={{ fontSize: 20, fontWeight: "bold", width: 60 }}
             className={this.getBadges()}
           >
             {this.formatCounter()}
           </span>
-        </td> */}
+        </td>
         <td>
           <button
             style={{ fontSize: 20, fontWeight: "bold" }}

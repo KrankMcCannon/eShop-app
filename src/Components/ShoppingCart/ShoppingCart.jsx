@@ -2,7 +2,7 @@ import React from "react";
 // import Navbar from "./navbar.jsx";
 import Counters from "./counters.jsx";
 
-const ShoppingCart = ({ carBought, onClick }) => {
+const ShoppingCart = (props) => {
   // const handleIncrement = (car) => {
   //   const cars = [...car];
   //   const index = cars.indexOf(car);
@@ -38,8 +38,7 @@ const ShoppingCart = ({ carBought, onClick }) => {
       {/* <Navbar totalCounter={carBought.filter((c) => c.id > 0).length} /> */}
       <main className="container">
         <Counters
-          selectedCar={carBought}
-          onClick={onClick}
+          selectedCar={props.carBought}
           // onReset={handleReset}
           // onIncrement={handleIncrement}
           // onDecrement={handleDecrement}

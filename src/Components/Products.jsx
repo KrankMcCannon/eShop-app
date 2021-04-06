@@ -29,16 +29,23 @@ class Products extends Component {
     this.setState({ cars: getAllProducts(), categories });
   }
 
-  handleBuy = (car) => {
-    const carChosen = [
-      ...this.state.carChosen,
-      {
+  addCarChosen = (car) => {
+    const newStateCars = [...this.state.carChosen];
+    const check = newStateCars.find((c) => c.id === car.id);
+    if (check) {
+      const carChosen = newStateCars.map((c) =>
+        c.id === car.id ? { ...c, value: c.value + 1 } : c
+      );
+      this.setState({ carChosen });
+    } else {
+      newStateCars.push({
         id: car.id,
         name: car.name,
         price: car.price,
-      },
-    ];
-    this.setState({ carChosen });
+        value: 1,
+      });
+      this.setState({ carChosen: newStateCars });
+    }
   };
 
   handleIncrement = (car) => {
@@ -122,7 +129,7 @@ class Products extends Component {
             <ProductsTable
               carSorted={carSorted}
               sortColumn={sortColumn}
-              onBuy={this.handleBuy}
+              onClick={this.addCarChosen}
               onSort={this.handleSort}
             />
             <Pagination
@@ -133,7 +140,7 @@ class Products extends Component {
             />
           </div>
         </div>
-        <ShoppingCart carBought={carChosen} onClick={this.handleBuy} />
+        <ShoppingCart carBought={carChosen} />
       </React.Fragment>
     );
   }
