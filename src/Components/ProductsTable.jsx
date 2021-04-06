@@ -8,24 +8,13 @@ class ProductsTable extends Component {
     { path: "rate", label: "Rate" },
     { path: "price", label: "Price" },
     {
-      key: "increment",
+      key: "buy",
       content: (car) => (
         <button
-          onClick={() => this.props.onIncrement(car)}
-          className="btn btn-secondary btn-sm"
+          onClick={() => this.props.onBuy(car)}
+          className="btn btn-success btn-sm"
         >
-          +
-        </button>
-      ),
-    },
-    {
-      key: "decrement",
-      content: (car) => (
-        <button
-          onClick={() => this.props.onDecrement(car)}
-          className="btn btn-secondary btn-sm"
-        >
-          -
+          <i className="fa fa-shopping-cart" aria-hidden="true"></i>
         </button>
       ),
     },

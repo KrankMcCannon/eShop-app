@@ -14,6 +14,7 @@ class Products extends Component {
   state = {
     cars: [],
     categories: [],
+    carChosen: [],
     currentPage: 1,
     pageSize: 6,
     sortColumn: { path: "name", order: "asc" },
@@ -27,6 +28,18 @@ class Products extends Component {
 
     this.setState({ cars: getAllProducts(), categories });
   }
+
+  handleBuy = (car) => {
+    const carChosen = [
+      {
+        id: car.id,
+        name: car.name,
+        price: car.price,
+      },
+      ...this.state.carChosen,
+    ];
+    this.setState({ carChosen });
+  };
 
   handleIncrement = (car) => {
     const cars = [...this.state.cars];
@@ -81,6 +94,7 @@ class Products extends Component {
 
   render() {
     const {
+      carChosen,
       categories,
       selectedCategory,
       pageSize,
@@ -95,7 +109,6 @@ class Products extends Component {
         <div className="logo">
           <Logo />
           <h2>eShop - eCommerce - eFake</h2>
-          {/* {totalCount} */}
         </div>
         <div className="row">
           <div className="col-3">
@@ -109,8 +122,7 @@ class Products extends Component {
             <ProductsTable
               carSorted={carSorted}
               sortColumn={sortColumn}
-              onIncrement={this.handleIncrement}
-              onDecrement={this.handleDecrement}
+              onBuy={this.handleBuy}
               onSort={this.handleSort}
             />
             <Pagination
@@ -121,7 +133,7 @@ class Products extends Component {
             />
           </div>
         </div>
-        <ShoppingCart />
+        <ShoppingCart carBought={carChosen} onClick={this.handleBuy} />
       </React.Fragment>
     );
   }

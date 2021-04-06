@@ -1,35 +1,27 @@
 import React, { Component } from "react";
 
 class Counter extends Component {
-  // componentDidUpdate(prevProps, prevState) {
-  //   console.log("prevProps", prevProps);
-  //   console.log("prevState", prevState);
-  //   if (prevProps.counter.value !== this.props.counter.value) {
-  //     //Ajax call and get new data from the server
-  //   }
-  // }
-
-  // componentWillUnmount() {
-  //   console.log("Counter - Unmount");
-  // }
-
   render() {
-    const { counter, onDelete, onIncrement, onDecrement } = this.props;
+    const { counter } = this.props;
     return (
       <React.Fragment>
         <td>
+          <p>{counter.name}</p>
+        </td>
+        <td>{counter.price}</td>
+        {/* <td>
           <span
             style={{ fontSize: 20, fontWeight: "bold", width: 60 }}
             className={this.getBadges()}
           >
             {this.formatCounter()}
           </span>
-        </td>
+        </td> */}
         <td>
           <button
             style={{ fontSize: 20, fontWeight: "bold" }}
             className="btn btn-secondary btn-sm m-2"
-            onClick={() => onIncrement(counter)}
+            // onClick={() => onIncrement(counter)}
           >
             +
           </button>
@@ -38,7 +30,7 @@ class Counter extends Component {
           <button
             style={{ fontSize: 20, fontWeight: "bold" }}
             className="btn btn-secondary btn-sm m-2"
-            onClick={() => onDecrement(counter)}
+            // onClick={() => onDecrement(counter)}
             disabled={this.props.counter.value === 0 ? "disabled" : ""}
           >
             -
@@ -48,7 +40,7 @@ class Counter extends Component {
           <button
             style={{ fontSize: 20, fontWeight: "bold" }}
             className="btn btn-danger btn-sm m-2"
-            onClick={() => onDelete(counter.id)}
+            // onClick={() => onDelete(counter.id)}
           >
             X
           </button>
