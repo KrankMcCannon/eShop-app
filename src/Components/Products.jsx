@@ -31,12 +31,12 @@ class Products extends Component {
 
   handleBuy = (car) => {
     const carChosen = [
+      ...this.state.carChosen,
       {
         id: car.id,
         name: car.name,
         price: car.price,
       },
-      ...this.state.carChosen,
     ];
     this.setState({ carChosen });
   };
