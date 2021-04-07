@@ -64,13 +64,14 @@ class Products extends Component {
   handleDecrement = (car) => {
     const cars = [...this.state.carChosen];
     const findCar = cars.find((c) => c.id === car.id);
-    if (findCar) {
+    if (findCar && findCar.value > 1) {
       const carChosen = cars.map((c) =>
-        c.id === car.id && c.value > 1 ? { ...c, value: c.value - 1 } : c
+        c.id === car.id ? { ...c, value: c.value - 1 } : { ...c }
       );
       this.setState({ carChosen });
-    } else {
-      return null;
+    } else if (findCar && findCar.value === 1) {
+      const carChosen = cars.filter((c) => c.id !== car.id);
+      this.setState({ carChosen });
     }
   };
 
@@ -81,10 +82,8 @@ class Products extends Component {
   };
 
   handleReset = () => {
-    const reset = this.state.carChosen.map((c) => {
-      c.value = 0;
-      return c;
-    });
+    let reset = [...this.state.carChosen];
+    reset = [];
     this.setState({ carChosen: reset });
   };
 
