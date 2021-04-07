@@ -5,23 +5,28 @@ const Counters = (props) => {
   const { selectedCar } = props;
 
   return (
-    <table className="table table-hover table-sm">
+    <table className="table table-hover">
       <thead>
-        <tr className="row">
-          <th className="reset">
-            <button className="btn btn-primary btn sm m-2">Reset</button>
+        <tr>
+          <th className="reset" scope="col">
+            <button
+              className="btn btn-primary btn sm m-2"
+              onClick={() => props.onReset()}
+            >
+              Reset
+            </button>
           </th>
         </tr>
       </thead>
       <tbody>
         {selectedCar
           ? selectedCar.map((car) => (
-              <tr className="row" key={selectedCar.indexOf(car)}>
+              <tr key={car.id}>
                 <td>{car.name}</td>
                 <td>{car.price}</td>
                 <td>
                   <span
-                    style={{ fontSize: 20, fontWeight: "bold", width: 60 }}
+                    style={{ textAlign: "center", marginTop: "5%" }}
                     className="badge m-2 badge-primary"
                   >
                     {car.value}
@@ -29,30 +34,30 @@ const Counters = (props) => {
                 </td>
                 <td>
                   <button
-                    style={{ fontSize: 20, fontWeight: "bold" }}
-                    className="btn btn-secondary btn-sm m-2"
-                    // onClick={() => onIncrement(counter)}
+                    style={{ textAlign: "center", marginTop: "5%" }}
+                    className="icon-btn add-btn"
+                    onClick={() => props.onIncrement(car)}
                   >
-                    +
+                    <div className="add-icon"></div>
+                    <div className="btn-txt">Aggiungi</div>
                   </button>
                 </td>
                 <td>
                   <button
-                    style={{ fontSize: 20, fontWeight: "bold" }}
-                    className="btn btn-secondary btn-sm m-2"
-                    // onClick={() => onDecrement(counter)}
-                    // disabled={this.props.counter.value === 0 ? "disabled" : ""}
+                    style={{ textAlign: "center", marginTop: "5%" }}
+                    className="icon-btn add-btn"
+                    onClick={() => props.onDecrement(car)}
                   >
-                    -
+                    <div className="btn-txt">Remove</div>
                   </button>
                 </td>
                 <td>
                   <button
-                    style={{ fontSize: 20, fontWeight: "bold" }}
+                    style={{ textAlign: "center", marginTop: "5%" }}
                     className="btn btn-danger btn-sm m-2"
-                    // onClick={() => onDelete(counter.id)}
+                    onClick={() => props.onDelete(car)}
                   >
-                    X
+                    <i className="fa fa-trash" aria-hidden="true"></i>
                   </button>
                 </td>
               </tr>

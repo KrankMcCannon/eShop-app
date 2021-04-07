@@ -49,21 +49,43 @@ class Products extends Component {
   };
 
   handleIncrement = (car) => {
-    const cars = [...this.state.cars];
-    const index = cars.indexOf(car);
-    cars[index] = { ...car };
-    cars[index].value++;
-    this.setState({ car: cars });
+    const cars = [...this.state.carChosen];
+    const findCar = cars.find((c) => c.id === car.id);
+    if (findCar) {
+      const carChosen = cars.map((c) =>
+        c.id === car.id ? { ...c, value: c.value + 1 } : c
+      );
+      this.setState({ carChosen });
+    } else {
+      return null;
+    }
   };
 
   handleDecrement = (car) => {
-    const cars = [...this.state.cars];
-    const index = cars.indexOf(car);
-    cars[index] = { ...car };
-    if (cars[index].value > 0) {
-      cars[index].value--;
+    const cars = [...this.state.carChosen];
+    const findCar = cars.find((c) => c.id === car.id);
+    if (findCar) {
+      const carChosen = cars.map((c) =>
+        c.id === car.id && c.value > 1 ? { ...c, value: c.value - 1 } : c
+      );
+      this.setState({ carChosen });
+    } else {
+      return null;
     }
-    this.setState({ car: cars });
+  };
+
+  handleDelete = (car) => {
+    const cars = [...this.state.carChosen];
+    const deleteCar = cars.filter((c) => c.id !== car.id);
+    this.setState({ carChosen: deleteCar });
+  };
+
+  handleReset = () => {
+    const reset = this.state.carChosen.map((c) => {
+      c.value = 0;
+      return c;
+    });
+    this.setState({ carChosen: reset });
   };
 
   handlePageChange = (page) => {
@@ -140,7 +162,13 @@ class Products extends Component {
             />
           </div>
         </div>
-        <ShoppingCart carBought={carChosen} />
+        <ShoppingCart
+          carBought={carChosen}
+          onIncrement={this.handleIncrement}
+          onDecrement={this.handleDecrement}
+          onDelete={this.handleDelete}
+          onReset={this.handleReset}
+        />
       </React.Fragment>
     );
   }

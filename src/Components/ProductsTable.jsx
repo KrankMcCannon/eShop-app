@@ -10,12 +10,12 @@ class ProductsTable extends Component {
     {
       key: "buy",
       content: (car) => (
-        <button
-          onClick={() => this.props.onClick(car)}
-          className="btn btn-success btn-sm"
-        >
-          <i className="fa fa-shopping-cart" aria-hidden="true"></i>
-        </button>
+        <div onClick={() => this.props.onClick(car)} className="btn-buy flex">
+          <a className="bttn" href="!#">
+            <i className="fa fa-shopping-cart" aria-hidden="true"></i> Aggiungi
+            al carrello
+          </a>
+        </div>
       ),
     },
   ];
