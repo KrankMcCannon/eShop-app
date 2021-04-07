@@ -1,11 +1,11 @@
 import React from "react";
-import Counters from "./counters.jsx";
+import CounterTable from "./CounterTable.jsx";
 
 const ShoppingCart = (props) => {
   return (
     <React.Fragment>
       <main className="container">
-        <Counters
+        <CounterTable
           selectedCar={props.carBought}
           onReset={props.onReset}
           onIncrement={props.onIncrement}
