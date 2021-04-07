@@ -7,7 +7,7 @@ const CounterTable = (props) => {
 
   return (
     <table className="table table-hover">
-      <CounterTableHead onReset={onReset} />
+      <CounterTableHead selectedCar={selectedCar} onReset={onReset} />
       <CounterTableBody
         selectedCar={selectedCar}
         onIncrement={onIncrement}

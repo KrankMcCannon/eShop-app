@@ -1,7 +1,7 @@
 import React from "react";
 
 const CounterTableHead = (props) => {
-  const { onReset } = props;
+  const { selectedCar, onReset } = props;
   return (
     <thead>
       <tr>
@@ -12,6 +12,14 @@ const CounterTableHead = (props) => {
           >
             Reset
           </button>
+        </th>
+        <th>
+          <span
+            style={{ textAlign: "center", marginTop: "5%" }}
+            className="badge m-2 badge-primary"
+          >
+            {selectedCar.length}
+          </span>
         </th>
       </tr>
     </thead>
