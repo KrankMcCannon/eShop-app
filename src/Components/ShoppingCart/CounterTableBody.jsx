@@ -1,27 +1,27 @@
 import React from "react";
 
 const CounterTableBody = (props) => {
-  const { selectedCar, onIncrement, onDecrement, onDelete } = props;
+  const { selectedProduct, onIncrement, onDecrement, onDelete } = props;
   return (
     <tbody>
-      {selectedCar
-        ? selectedCar.map((car) => (
-            <tr key={car.id}>
-              <td>{car.name}</td>
-              <td>{car.price}</td>
+      {selectedProduct
+        ? selectedProduct.map((product) => (
+            <tr key={product.id}>
+              <td>{product.name}</td>
+              <td>{product.price}</td>
               <td>
                 <span
                   style={{ textAlign: "center", marginTop: "5%" }}
                   className="badge m-2 badge-primary"
                 >
-                  {car.value}
+                  {product.value}
                 </span>
               </td>
               <td>
                 <button
                   style={{ textAlign: "center", marginTop: "5%" }}
                   className="icon-btn add-btn"
-                  onClick={() => onIncrement(car)}
+                  onClick={() => onIncrement(product)}
                 >
                   <div className="add-icon"></div>
                   <div className="btn-txt">Aggiungi</div>
@@ -31,7 +31,7 @@ const CounterTableBody = (props) => {
                 <button
                   style={{ textAlign: "center", marginTop: "5%" }}
                   className="icon-btn add-btn"
-                  onClick={() => onDecrement(car)}
+                  onClick={() => onDecrement(product)}
                 >
                   <div className="btn-txt">Remove</div>
                 </button>
@@ -40,7 +40,7 @@ const CounterTableBody = (props) => {
                 <button
                   style={{ textAlign: "center", marginTop: "5%" }}
                   className="btn btn-danger btn-sm m-2"
-                  onClick={() => onDelete(car)}
+                  onClick={() => onDelete(product)}
                 >
                   <i className="fa fa-trash" aria-hidden="true"></i>
                 </button>

@@ -6,7 +6,7 @@ const ShoppingCart = (props) => {
     <React.Fragment>
       <main className="container">
         <CounterTable
-          selectedCar={props.carBought}
+          selectedProduct={props.productBought}
           onReset={props.onReset}
           onIncrement={props.onIncrement}
           onDecrement={props.onDecrement}

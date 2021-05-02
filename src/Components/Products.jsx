@@ -1,20 +1,20 @@
 import React, { Component } from "react";
 import { ReactComponent as Logo } from "../svg/logo-12.svg";
-import "../../node_modules/bootstrap/dist/css/bootstrap.css";
-import "../../node_modules/font-awesome/css/font-awesome.css";
+import { getAllProducts, getAllCategories } from "../Database/db.js";
+import { paginate } from "../utils/paginate";
 import ListGroup from "./Common/Listgroup";
 import Pagination from "./Common/Pagination";
 import ProductsTable from "./ProductsTable";
 import ShoppingCart from "./ShoppingCart/ShoppingCart";
-import { getAllProducts, getAllCategories } from "../Database/db.js";
-import { paginate } from "../utils/paginate";
+import "../../node_modules/bootstrap/dist/css/bootstrap.css";
+import "../../node_modules/font-awesome/css/font-awesome.css";
 import _ from "lodash";
 
 class Products extends Component {
   state = {
-    cars: [],
+    products: [],
     categories: [],
-    carChosen: [],
+    productChosen: [],
     currentPage: 1,
     pageSize: 6,
     sortColumn: { path: "name", order: "asc" },
@@ -26,65 +26,65 @@ class Products extends Component {
       ...getAllCategories(),
     ];
 
-    this.setState({ cars: getAllProducts(), categories });
+    this.setState({ products: getAllProducts(), categories });
   }
 
-  addCarChosen = (car) => {
-    const newStateCars = [...this.state.carChosen];
-    const check = newStateCars.find((c) => c.id === car.id);
+  addProductChosen = (product) => {
+    const newStateProducts = [...this.state.productChosen];
+    const check = newStateProducts.find((p) => p.id === product.id);
     if (check) {
-      const carChosen = newStateCars.map((c) =>
-        c.id === car.id ? { ...c, value: c.value + 1 } : c
+      const productChosen = newStateProducts.map((p) =>
+        p.id === product.id ? { ...p, value: p.value + 1 } : p
       );
-      this.setState({ carChosen });
+      this.setState({ productChosen });
     } else {
-      newStateCars.push({
-        id: car.id,
-        name: car.name,
-        price: car.price,
+      newStateProducts.push({
+        id: product.id,
+        name: product.name,
+        price: product.price,
         value: 1,
       });
-      this.setState({ carChosen: newStateCars });
+      this.setState({ productChosen: newStateProducts });
     }
   };
 
-  handleIncrement = (car) => {
-    const cars = [...this.state.carChosen];
-    const findCar = cars.find((c) => c.id === car.id);
-    if (findCar) {
-      const carChosen = cars.map((c) =>
-        c.id === car.id ? { ...c, value: c.value + 1 } : c
+  handleIncrement = (product) => {
+    const products = [...this.state.productChosen];
+    const findProduct = products.find((p) => p.id === product.id);
+    if (findProduct) {
+      const productChosen = products.map((p) =>
+        p.id === product.id ? { ...p, value: p.value + 1 } : p
       );
-      this.setState({ carChosen });
+      this.setState({ productChosen });
     } else {
       return null;
     }
   };
 
-  handleDecrement = (car) => {
-    const cars = [...this.state.carChosen];
-    const findCar = cars.find((c) => c.id === car.id);
-    if (findCar && findCar.value > 1) {
-      const carChosen = cars.map((c) =>
-        c.id === car.id ? { ...c, value: c.value - 1 } : { ...c }
+  handleDecrement = (product) => {
+    const products = [...this.state.productChosen];
+    const findProduct = products.find((p) => p.id === product.id);
+    if (findProduct && findProduct.value > 1) {
+      const productChosen = products.map((p) =>
+        p.id === product.id ? { ...p, value: p.value - 1 } : { ...p }
       );
-      this.setState({ carChosen });
-    } else if (findCar && findCar.value === 1) {
-      const carChosen = cars.filter((c) => c.id !== car.id);
-      this.setState({ carChosen });
+      this.setState({ productChosen });
+    } else if (findProduct && findProduct.value === 1) {
+      const productChosen = products.filter((p) => p.id !== product.id);
+      this.setState({ productChosen });
     }
   };
 
-  handleDelete = (car) => {
-    const cars = [...this.state.carChosen];
-    const deleteCar = cars.filter((c) => c.id !== car.id);
-    this.setState({ carChosen: deleteCar });
+  handleDelete = (product) => {
+    const products = [...this.state.productChosen];
+    const deleteCar = products.filter((p) => p.id !== product.id);
+    this.setState({ productChosen: deleteCar });
   };
 
   handleReset = () => {
-    let reset = [...this.state.carChosen];
+    let reset = [...this.state.productChosen];
     reset = [];
-    this.setState({ carChosen: reset });
+    this.setState({ productChosen: reset });
   };
 
   handlePageChange = (page) => {
@@ -101,7 +101,7 @@ class Products extends Component {
 
   getPageData = () => {
     const {
-      cars,
+      products,
       selectedCategory,
       pageSize,
       currentPage,
@@ -110,19 +110,19 @@ class Products extends Component {
 
     const filtered =
       selectedCategory && selectedCategory.id
-        ? cars.filter((c) => c.category.id === selectedCategory.id)
-        : cars;
+        ? products.filter((p) => p.category.id === selectedCategory.id)
+        : products;
 
     const sorted = _.orderBy(filtered, [sortColumn.path], [sortColumn.order]);
 
-    const carSorted = paginate(sorted, currentPage, pageSize);
+    const productSorted = paginate(sorted, currentPage, pageSize);
 
-    return { totalCount: filtered.length, data: carSorted };
+    return { totalCount: filtered.length, data: productSorted };
   };
 
   render() {
     const {
-      carChosen,
+      productChosen,
       categories,
       selectedCategory,
       pageSize,
@@ -130,7 +130,7 @@ class Products extends Component {
       sortColumn,
     } = this.state;
 
-    const { totalCount, data: carSorted } = this.getPageData();
+    const { totalCount, data: productSorted } = this.getPageData();
 
     return (
       <React.Fragment>
@@ -148,9 +148,9 @@ class Products extends Component {
           </div>
           <div className="col">
             <ProductsTable
-              carSorted={carSorted}
+              productSorted={productSorted}
               sortColumn={sortColumn}
-              onClick={this.addCarChosen}
+              onClick={this.addProductChosen}
               onSort={this.handleSort}
             />
             <Pagination
@@ -162,7 +162,7 @@ class Products extends Component {
           </div>
         </div>
         <ShoppingCart
-          carBought={carChosen}
+          productBought={productChosen}
           onIncrement={this.handleIncrement}
           onDecrement={this.handleDecrement}
           onDelete={this.handleDelete}

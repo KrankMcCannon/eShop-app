@@ -9,8 +9,11 @@ class ProductsTable extends Component {
     { path: "price", label: "Price" },
     {
       key: "buy",
-      content: (car) => (
-        <div onClick={() => this.props.onClick(car)} className="btn-buy flex">
+      content: (product) => (
+        <div
+          onClick={() => this.props.onClick(product)}
+          className="btn-buy flex"
+        >
           <a className="bttn" href="!#">
             <i className="fa fa-shopping-cart" aria-hidden="true"></i> Aggiungi
             al carrello
@@ -21,12 +24,12 @@ class ProductsTable extends Component {
   ];
 
   render() {
-    const { carSorted, sortColumn, onSort } = this.props;
+    const { productSorted, sortColumn, onSort } = this.props;
 
     return (
       <Table
         columns={this.columns}
-        data={carSorted}
+        data={productSorted}
         onSort={onSort}
         sortColumn={sortColumn}
       />
