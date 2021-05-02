@@ -5,7 +5,7 @@ class ProductsTable extends Component {
   columns = [
     { path: "name", label: "Name" },
     { path: "category.name", label: "Category" },
-    { path: "rate", label: "Rate" },
+    { path: "stock", label: "Stock" },
     { path: "price", label: "Price" },
     {
       key: "buy",
