@@ -1,9 +1,16 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import Table from "./Common/Table";
 
 class ProductsTable extends Component {
   columns = [
-    { path: "name", label: "Name" },
+    {
+      path: "name",
+      label: "Name",
+      content: (product) => (
+        <Link to={`/products/${product.id}`}>{product.name}</Link>
+      ),
+    },
     { path: "category.name", label: "Category" },
     { path: "stock", label: "Stock" },
     { path: "price", label: "Price" },
@@ -14,10 +21,10 @@ class ProductsTable extends Component {
           onClick={() => this.props.onClick(product)}
           className="btn-buy flex"
         >
-          <a className="bttn" href="!#">
+          <div className="bttn">
             <i className="fa fa-shopping-cart" aria-hidden="true"></i> Aggiungi
             al carrello
-          </a>
+          </div>
         </div>
       ),
     },

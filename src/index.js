@@ -1,13 +1,14 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import "./css/index.scss";
-import Products from "./Components/Products.jsx";
+import { BrowserRouter } from "react-router-dom";
+import App from "./App";
 import reportWebVitals from "./reportWebVitals";
+import "./css/index.scss";
 
 ReactDOM.render(
-  <React.StrictMode>
-    <Products />
-  </React.StrictMode>,
+  <BrowserRouter>
+    <App />
+  </BrowserRouter>,
   document.getElementById("root")
 );
 

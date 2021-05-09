@@ -1,0 +1,6 @@
+{
+  "apiCategories": "http://localhost:4000/categories",
+  "apiProducts": "http://localhost:4000/products",
+  "apiUsers": "http://localhost:3900/api/users",
+  "apiAuth": "http://localhost:3900/api/auth"
+}

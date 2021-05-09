@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import _ from "lodash";
 
@@ -15,13 +16,13 @@ const Pagination = ({ itemsCount, pageSize, onPageChange, currentPage }) => {
             key={page}
             className={page === currentPage ? "page-item active" : "page-item"}
           >
-            <a
-              href="!#"
+            <Link
+              to="/products"
               className="page-link"
               onClick={() => onPageChange(page)}
             >
               {page}
-            </a>
+            </Link>
           </li>
         ))}
       </ul>

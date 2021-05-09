@@ -1,14 +1,17 @@
 import React, { Component } from "react";
-import { ReactComponent as Logo } from "../svg/logo-12.svg";
-import { getAllProducts, getAllCategories } from "../Database/db.js";
+import { getCategories } from "../Database/CategoryService";
+import { getProducts } from "../Database/ProductService";
 import { paginate } from "../utils/paginate";
 import ListGroup from "./Common/Listgroup";
 import Pagination from "./Common/Pagination";
 import ProductsTable from "./ProductsTable";
 import ShoppingCart from "./ShoppingCart/ShoppingCart";
+import Search from "./Common/Search";
+import { ReactComponent as Logo } from "../svg/logo-12.svg";
 import "../../node_modules/bootstrap/dist/css/bootstrap.css";
 import "../../node_modules/font-awesome/css/font-awesome.css";
 import _ from "lodash";
+import { Link } from "react-router-dom";
 
 class Products extends Component {
   state = {
@@ -20,13 +23,12 @@ class Products extends Component {
     sortColumn: { path: "name", order: "asc" },
   };
 
-  componentDidMount() {
-    const categories = [
-      { id: "", name: "All Categories" },
-      ...getAllCategories(),
-    ];
+  async componentDidMount() {
+    const { data: awaitCategories } = await getCategories();
+    const { data: awaitProducts } = await getProducts();
+    const categories = [{ id: "", name: "All Categories" }, ...awaitCategories];
 
-    this.setState({ products: getAllProducts(), categories });
+    this.setState({ products: awaitProducts, categories });
   }
 
   addProductChosen = (product) => {
@@ -92,7 +94,19 @@ class Products extends Component {
   };
 
   handleCategorySelect = (category) => {
-    this.setState({ selectedCategory: category, currentPage: 1 });
+    this.setState({
+      selectedCategory: category,
+      searchQuery: "",
+      currentPage: 1,
+    });
+  };
+
+  handleSearch = (query) => {
+    this.setState({
+      searchQuery: query,
+      selectedCategory: null,
+      currentPage: 1,
+    });
   };
 
   handleSort = (sortColumn) => {
@@ -101,36 +115,45 @@ class Products extends Component {
 
   getPageData = () => {
     const {
-      products,
-      selectedCategory,
       pageSize,
       currentPage,
       sortColumn,
+      selectedCategory,
+      searchQuery,
+      products: allProducts,
     } = this.state;
 
-    const filtered =
-      selectedCategory && selectedCategory.id
-        ? products.filter((p) => p.category.id === selectedCategory.id)
-        : products;
+    let filtered = allProducts;
+    if (searchQuery)
+      filtered = allProducts.filter((p) =>
+        p.name.toLowerCase().startsWith(searchQuery.toLowerCase())
+      );
+    else if (selectedCategory && selectedCategory.id)
+      filtered = allProducts.filter(
+        (p) => p.category.id === selectedCategory.id
+      );
 
     const sorted = _.orderBy(filtered, [sortColumn.path], [sortColumn.order]);
 
-    const productSorted = paginate(sorted, currentPage, pageSize);
+    const products = paginate(sorted, currentPage, pageSize);
 
-    return { totalCount: filtered.length, data: productSorted };
+    return { totalCount: filtered.length, data: products };
   };
 
   render() {
     const {
       productChosen,
       categories,
+      searchQuery,
       selectedCategory,
       pageSize,
       currentPage,
       sortColumn,
     } = this.state;
 
-    const { totalCount, data: productSorted } = this.getPageData();
+    const { user } = this.props;
+
+    const { totalCount, data: products } = this.getPageData();
 
     return (
       <React.Fragment>
@@ -138,6 +161,12 @@ class Products extends Component {
           <Logo />
           <h2>eShop - eCommerce - eFake</h2>
         </div>
+        {user && (
+          <Link to="/products/new" className="btn btn-primary">
+            New Product
+          </Link>
+        )}
+        <Search value={searchQuery} onChange={this.handleSearch} />
         <div className="row">
           <div className="col-3">
             <ListGroup
@@ -148,7 +177,7 @@ class Products extends Component {
           </div>
           <div className="col">
             <ProductsTable
-              productSorted={productSorted}
+              productSorted={products}
               sortColumn={sortColumn}
               onClick={this.addProductChosen}
               onSort={this.handleSort}
